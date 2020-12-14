@@ -1,0 +1,17 @@
+apply plugin: 'java'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.testng:testng:7.3.0'
+    implementation 'org.seleniumhq.selenium:selenium-java:3.141.59'
+    compile group: 'com.google.guava', name: 'guava', version: '30.0-jre'
+}
+
+test {
+    useTestNG()
+}
+
+
