@@ -22,13 +22,13 @@ public class ApplicationManager {
     }
 
     public void init() {
-        if (browser == BrowserType.FIREFOX){
+        if (browser.equals(BrowserType.FIREFOX)){
             wd = new FirefoxDriver();
         }
-        else if (browser == BrowserType.CHROME){
+        else if (browser.equals(BrowserType.CHROME)){
             wd = new ChromeDriver();
         }
-        else if (browser == BrowserType.OPERA_BLINK){
+        else if (browser.equals(BrowserType.OPERA)){
             wd = new OperaDriver();
         }
         wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
