@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebDriver;
 import ru.stqa.pft.addressbook.model.ContactData;
+import ru.stqa.pft.addressbook.model.GroupData;
 
 public class ContactHelper extends HelperBase {
 
@@ -23,11 +24,17 @@ public class ContactHelper extends HelperBase {
         type(By.name("home"), contactData.getHomePhone());
     }
 
+    private void returnToHomePage() {
+        wd.findElement(By.linkText("home")).click();
+    }
+
     public void deleteContact() {
-        try {
-            click(By.xpath("//input[@value='Delete']"));
-        } catch (UnhandledAlertException ex) {
-        }
+        click(By.xpath("//input[@value='Delete']"));
+        wd.switchTo().alert().accept();
+    }
+
+    public void goToPageContactAdd() {
+        wd.findElement(By.linkText("add new")).click();
     }
 
     public void selectContact() {
@@ -42,4 +49,14 @@ public class ContactHelper extends HelperBase {
         click(By.name("update"));
     }
 
+    public void createContact(ContactData contact) {
+        goToPageContactAdd();
+        fillContactForm(contact);
+        submitContactCreation();
+        returnToHomePage();
+    }
+
+    public boolean isThereAContact() {
+        return isElementPresent(By.name("selected[]"));
+    }
 }
