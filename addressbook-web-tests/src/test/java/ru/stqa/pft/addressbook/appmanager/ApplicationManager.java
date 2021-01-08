@@ -31,7 +31,7 @@ public class ApplicationManager {
         else if (browser.equals(BrowserType.OPERA)){
             wd = new OperaDriver();
         }
-        wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        wd.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
         wd.get("http://localhost/addressbook/group.php");
         sessionHelper = new SessionHelper(wd);
         navigationHelper = new NavigationHelper(wd);
