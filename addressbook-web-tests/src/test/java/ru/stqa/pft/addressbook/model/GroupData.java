@@ -12,8 +12,15 @@ public class GroupData {
         this.id = id;
     }
 
-    public GroupData(String name, String header, String footer) {
+    public GroupData(Integer id, String name, String header, String footer) {
         this.id = id;
+        this.name = name;
+        this.header = header;
+        this.footer = footer;
+    }
+
+    public GroupData(String name, String header, String footer) {
+        this.id = 0;
         this.name = name;
         this.header = header;
         this.footer = footer;
