@@ -44,11 +44,11 @@ public class ApplicationManager {
         wd.quit();
     }
 
-    public NavigationHelper getNavigationHelper() {
+    public NavigationHelper goTo() {
         return navigationHelper;
     }
 
-    public GroupHelper getGroupHelper() {
+    public GroupHelper group() {
         return groupHelper;
     }
 
@@ -56,7 +56,7 @@ public class ApplicationManager {
         return sessionHelper;
     }
 
-    public ContactHelper getContactHelper() {
+    public ContactHelper contact() {
         return contactHelper;
     }
 }

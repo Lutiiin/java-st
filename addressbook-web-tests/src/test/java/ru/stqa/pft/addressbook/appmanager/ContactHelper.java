@@ -1,11 +1,9 @@
 package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import ru.stqa.pft.addressbook.model.ContactData;
-import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,18 +51,24 @@ public class ContactHelper extends HelperBase {
         click(By.name("update"));
     }
 
-    public void createContact(ContactData contact) {
+    public void create(ContactData contact) {
         goToPageContactAdd();
         fillContactForm(contact);
         submitContactCreation();
         returnToHomePage();
     }
 
-    public void modifyContact(List<ContactData> before, ContactData contact) {
+    public void modify(List<ContactData> before, ContactData contact) {
         selectContact(before.size() -1);
         initModificationContact();
         fillContactForm(contact);
         submitModificationContact();
+        returnToHomePage();
+    }
+
+    public void delete(int index) {
+        selectContact(index);
+        deleteContact();
         returnToHomePage();
     }
 
@@ -76,7 +80,7 @@ public class ContactHelper extends HelperBase {
         return wd.findElements(By.name("selected[]")).size();
     }
 
-    public List<ContactData> getContactList() {
+    public List<ContactData> list() {
         List<ContactData> contacts = new ArrayList<ContactData>();
         List<WebElement> elements = wd.findElements(By.cssSelector("#maintable > tbody > tr[name = 'entry']"));
         for (WebElement element : elements){
