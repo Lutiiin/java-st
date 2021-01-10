@@ -22,8 +22,9 @@ public class ContactModificationTests extends TestBase{
   public void testContactModification() throws Exception {
     List<ContactData> before = app.contact().list();
     int index = before.size() -1;
-    ContactData contact = new ContactData(before.get(index).getId(),"Ivanna", "Sidorova", null, null, null);
-    app.contact().modify(before, contact);
+    int id = before.get(index).getId();
+    ContactData contact = new ContactData(id,"Ivanna", "Sidorova", null, null, null);
+    app.contact().modify(id, index, contact);
     List<ContactData> after = app.contact().list();
     Assert.assertEquals(after.size(), before.size());
 
