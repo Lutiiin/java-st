@@ -7,9 +7,9 @@ public class ContactData {
     private int id;
     private final String firstName;
     private final String lastName;
-    private final String email;
-    private final String address;
-    private final String homePhone;
+    private String email;
+    private String address;
+    private String homePhone;
 
     public ContactData(Integer id, String firstName, String lastName, String email, String address, String homePhone) {
         this.id = id;
@@ -27,6 +27,18 @@ public class ContactData {
         this.email = email;
         this.address = address;
         this.homePhone = homePhone;
+    }
+
+    public ContactData(String firstName, String lastName) {
+        this.id = 0;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+    public ContactData(Integer id, String firstName, String lastName) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
     public void setId(int id) {
