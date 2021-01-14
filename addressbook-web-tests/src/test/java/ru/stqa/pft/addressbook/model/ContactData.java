@@ -4,45 +4,41 @@ import java.util.Objects;
 
 public class ContactData {
 
-    private int id;
-    private final String firstName;
-    private final String lastName;
+    private int id = Integer.MAX_VALUE;
+    private String firstName;
+    private String lastName;
     private String email;
     private String address;
     private String homePhone;
 
-    public ContactData(Integer id, String firstName, String lastName, String email, String address, String homePhone) {
+    public ContactData withId(int id) {
         this.id = id;
+        return this;
+    }
+
+    public ContactData withFirstName(String firstName) {
         this.firstName = firstName;
+        return this;
+    }
+
+    public ContactData withLastName(String lastName) {
         this.lastName = lastName;
+        return this;
+    }
+
+    public ContactData withEmail(String email) {
         this.email = email;
+        return this;
+    }
+
+    public ContactData withAddress(String address) {
         this.address = address;
+        return this;
+    }
+
+    public ContactData withHomePhone(String homePhone) {
         this.homePhone = homePhone;
-    }
-
-    public ContactData(String firstName, String lastName, String email, String address, String homePhone) {
-        this.id = 0;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.address = address;
-        this.homePhone = homePhone;
-    }
-
-    public ContactData(String firstName, String lastName) {
-        this.id = 0;
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
-
-    public ContactData(Integer id, String firstName, String lastName) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+        return this;
     }
 
     public String getFirstName() {
