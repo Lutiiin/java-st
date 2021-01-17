@@ -18,7 +18,7 @@ public class ContactDeletionTests extends TestBase{
               .withFirstName("Ivan").withLastName("Sidorov")
               .withHomePhone("+74956734512").withMobilePhone("+(789)92396534").withWorkPhone("+7499-452-09-45")
               .withEmail("any_one@test.com").withEmail2("any_two@test.com")
-              .withAddress("Какой-то адрес раз").withAddress2("Какой-то адрес два"));
+              .withAddress("Какой-то адрес раз"));
     }
   }
 

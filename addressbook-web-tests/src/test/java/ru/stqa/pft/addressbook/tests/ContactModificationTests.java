@@ -18,7 +18,7 @@ public class ContactModificationTests extends TestBase{
               .withFirstName("Ivan").withLastName("Sidorov")
               .withHomePhone("+74956734512").withMobilePhone("+(789)92396534").withWorkPhone("+7499-452-09-45")
               .withEmail("any_one@test.com").withEmail2("any_two@test.com")
-              .withAddress("Какой-то адрес раз").withAddress2("Какой-то адрес два"));
+              .withAddress("Какой-то адрес раз"));
     }
   }
 
@@ -31,7 +31,7 @@ public class ContactModificationTests extends TestBase{
             .withFirstName("Ivanna").withLastName("Sidorova")
             .withHomePhone("+74950000000").withMobilePhone("+(789)0000000").withWorkPhone("+7499-000-00-00")
             .withEmail("edit_any_one@test.com").withEmail2("edit_any_two@test.com")
-            .withAddress("Какой-то отредактированный адрес раз").withAddress2("Какой-то отредактированный адрес два");
+            .withAddress("Какой-то отредактированный адрес раз");
     app.contact().modify(contact);
     Contacts after = app.contact().all();
     assertThat(app.contact().count(), equalTo(before.size()));
