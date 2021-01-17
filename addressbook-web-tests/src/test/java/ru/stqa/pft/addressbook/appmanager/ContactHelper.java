@@ -26,10 +26,12 @@ public class ContactHelper extends HelperBase {
         type(By.name("firstname"), contactData.getFirstName());
         type(By.name("lastname"), contactData.getLastName());
         type(By.name("email"), contactData.getEmail());
+        type(By.name("email2"), contactData.getEmail2());
         type(By.name("address"), contactData.getAddress());
         type(By.name("home"), contactData.getHomePhone());
         type(By.name("mobile"), contactData.getMobilePhone());
         type(By.name("work"), contactData.getWorkPhone());
+        attach(By.name("photo"), contactData.getPhoto());
     }
 
     private void returnToHomePage() {
@@ -96,10 +98,10 @@ public class ContactHelper extends HelperBase {
             String lastName = cells.get(1).getText();
             String allPhones = cells.get(5).getText();
             String allEmail = cells.get(4).getText();
-            String allAddress = cells.get(3).getText();
+            String address = cells.get(3).getText();
             contactCache.add(new ContactData()
                     .withId(id).withFirstName(name).withLastName(lastName)
-                    .withAllPhones(allPhones).withEmail(allEmail).withAddress(allAddress));
+                    .withAllPhones(allPhones).withAllEmails(allEmail).withAddress(address));
         }
         return new Contacts(contactCache);
     }
@@ -115,12 +117,11 @@ public class ContactHelper extends HelperBase {
         String email = wd.findElement(By.name("email")).getAttribute("value");
         String email2 = wd.findElement(By.name("email2")).getAttribute("value");
         String address = wd.findElement(By.name("address")).getAttribute("value");
-        String address2 = wd.findElement(By.name("address2")).getAttribute("value");
         wd.navigate().back();
         return new ContactData()
                 .withId(contact.getId()).withFirstName(firstName).withLastName(lastName)
                 .withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work)
                 .withEmail(email).withEmail2(email2)
-                .withAddress(address).withAddress2(address2);
+                .withAddress(address);
         }
     }
