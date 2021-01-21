@@ -25,7 +25,7 @@ public class ApplicationManager {
     public ApplicationManager(String browser) throws IOException {
         this.browser = browser;
         String target = System.getProperty("target", "local");
-        Properties properties = new Properties();
+        properties = new Properties();
         properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
     }
 
