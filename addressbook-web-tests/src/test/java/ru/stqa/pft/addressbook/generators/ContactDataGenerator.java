@@ -60,9 +60,14 @@ public class ContactDataGenerator {
         for (int i =0; i < count; i++){
             contacts.add(new ContactData().withFirstName(String.format("%s Иван", i))
                     .withLastName(String.format("%s Сидоров", i))
-                    .withEmail(String.format("email%s@test.ru", i))
                     .withHomePhone(String.format("+7999812345%s", i))
-                    .withAddress(String.format("г. Москва ул. Гоголя д. %s", i)));
+                    .withMobilePhone(String.format("+7(989)000000%s", i+1))
+                    .withWorkPhone(String.format("+7499-000-00-0%s", i+2))
+                    .withEmail(String.format("email_%s@test.ru", i))
+                    .withEmail2(String.format("email_%s@test.ru", i+1))
+                    .withEmail3(String.format("email_%s@test.ru", i+2))
+                    .withAddress(String.format("г. Москва ул. Гоголя д. %s", i))
+                    .withAddress2(String.format("г. Москва ул. Пушкина д. %s", i+1)));
         }
         return contacts;
     }

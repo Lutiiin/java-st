@@ -38,10 +38,10 @@ public class ContactCreationTests extends TestBase{
   @Test (dataProvider = "validContacts")
   public void testContactCreation(ContactData contact) throws Exception {
     app.goTo().homePage();
-    Contacts before = app.contact().all();
+    Contacts before = app.db().contacts();
     app.contact().create(contact);
-    Contacts after = app.contact().all();
     assertThat(app.contact().count(), equalTo(before.size() + 1));
+    Contacts after = app.db().contacts();
     assertThat(after, equalTo(before
             .withAdded(contact.withId(after.stream().mapToInt(ContactData::getId).max().getAsInt()))));
   }
@@ -49,12 +49,12 @@ public class ContactCreationTests extends TestBase{
   @Test
   public void testBadContactCreation() throws Exception {
     app.goTo().homePage();
-    Contacts before = app.contact().all();
+    Contacts before = app.db().contacts();
     File photo = new File("/src/test/resources/123.png");
     ContactData contact = new ContactData()
             .withFirstName("Ivan").withLastName("Sidorov'")
             .withHomePhone("+74956734512").withMobilePhone("+(789)92396534").withWorkPhone("+7499-452-09-45")
-            .withEmail("any_one@test.com").withEmail2("any_two@test.com")
+            .withEmail("any_one@test.com").withEmail2("any_two@test.com").withEmail3("any_three@test.com")
             .withAddress("Какой-то адрес раз").withPhoto(photo);
     app.contact().create(contact);
     assertThat(app.contact().count(), equalTo(before.size()));
