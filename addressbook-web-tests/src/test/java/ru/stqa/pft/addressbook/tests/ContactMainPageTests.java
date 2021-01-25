@@ -19,7 +19,7 @@ public class ContactMainPageTests extends TestBase {
             app.contact().create(new ContactData()
                     .withFirstName("Ivan").withLastName("Sidorov")
                     .withHomePhone("+74956734512").withMobilePhone("+(789)92396534").withWorkPhone("+7499-452-09-45")
-                    .withEmail("any_one@test.com").withEmail2("any_two@test.com")
+                    .withEmail("any_one@test.com").withEmail2("any_two@test.com").withEmail3("any_three@test.com")
                     .withAddress("Какой-то адрес раз"));
         }
     }
@@ -43,7 +43,7 @@ public class ContactMainPageTests extends TestBase {
     }
 
     private String mergeEmail(ContactData contact) {
-        return Arrays.asList(contact.getEmail(), contact.getEmail2())
+        return Arrays.asList(contact.getEmail(), contact.getEmail2(), contact.getEmail3())
                 .stream().filter((s) -> ! equals(""))
                 .map(this::cleanedEmail)
                 .collect(Collectors.joining("\n"));
