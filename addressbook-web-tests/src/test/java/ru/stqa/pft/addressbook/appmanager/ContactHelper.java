@@ -73,11 +73,6 @@ public class ContactHelper extends HelperBase {
         click(By.name("add"));
     }
 
-    public String getGroupId() {
-        String idGroup = wd.findElement(By.xpath("//*[@name=\"to_group\"]/option")).getAttribute("value");
-        return idGroup;
-    }
-
     public void create(ContactData contact) {
         goToPageContactAdd();
         fillContactForm(contact);

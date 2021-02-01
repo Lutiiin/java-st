@@ -30,19 +30,17 @@ public class AddContactInGroupTests extends TestBase{
 
   @Test
   public void testAddContactInGroup() throws Exception {
-    app.goTo().homePage();
-    String id = app.contact().getGroupId();
+    String id =  String.valueOf(app.db().groups().iterator().next().getId());
     Contacts before = app.db().contactsInGroup(id);
-    Contacts contacts = app.db().contacts().withoutContactInGroup(before);
-    if (contacts.size() != 0){
-      ContactData addedContact = contacts.iterator().next();
+    Contacts contactsNotInGroup = app.db().contacts().withoutContactInGroup(before);
+    if (contactsNotInGroup.size() != 0){
+      ContactData addedContact = contactsNotInGroup.iterator().next();
       app.goTo().homePage();
       app.contact().addToGroup(addedContact);
       assertThat(app.contact().countContactsInGroup(id), equalTo(before.size() + 1));
       Contacts after = app.db().contactsInGroup(id);
       assertThat(after, equalTo(before.withAdded(addedContact)));
-    }
-    else{
+    } else {
       System.out.println("Все контакты добавлены в группу!");
     }
   }
