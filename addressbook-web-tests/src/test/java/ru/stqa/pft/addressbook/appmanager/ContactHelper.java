@@ -65,12 +65,26 @@ public class ContactHelper extends HelperBase {
         wd.findElement(By.xpath("//a[@href=\'edit.php?id=" + id + "\']")).click();
     }
 
+    public void selectGroupToAdd(String idGroup) {
+        Select group = new Select(wd.findElement(By.name("to_group")));
+        group.selectByValue(idGroup);
+    }
+
+    public void selectContactsInGroup(String idGroup) {
+        Select group = new Select(wd.findElement(By.name("group")));
+        group.selectByValue(idGroup);
+    }
+
     public void submitModificationContact() {
         click(By.name("update"));
     }
 
     public void initAddToGroup() {
         click(By.name("add"));
+    }
+
+    public void initDeletionFromGroup() {
+        click(By.name("remove"));
     }
 
     public void create(ContactData contact) {
@@ -81,9 +95,18 @@ public class ContactHelper extends HelperBase {
         returnToHomePage();
     }
 
-    public void addToGroup(ContactData contact) {
+    public void addToGroup(ContactData contact, String idGroup) {
         selectContactById(contact.getId());
+        selectGroupToAdd(idGroup);
         initAddToGroup();
+        contactCache = null;
+        returnToHomePage();
+    }
+
+    public void deletionFromGroup(ContactData contact, String idGroup) {
+        selectContactsInGroup(idGroup);
+        selectContactById(contact.getId());
+        initDeletionFromGroup();
         contactCache = null;
         returnToHomePage();
     }
