@@ -40,7 +40,7 @@ public class ContactCreationTests extends TestBase{
     app.goTo().homePage();
     Contacts before = app.db().contacts();
     app.contact().create(contact);
-    assertThat(app.contact().count(), equalTo(before.size() + 1));
+    assertThat(app.contact().countContacts(), equalTo(before.size() + 1));
     Contacts after = app.db().contacts();
     assertThat(after, equalTo(before
             .withAdded(contact.withId(after.stream().mapToInt(ContactData::getId).max().getAsInt()))));
@@ -57,7 +57,7 @@ public class ContactCreationTests extends TestBase{
             .withEmail("any_one@test.com").withEmail2("any_two@test.com").withEmail3("any_three@test.com")
             .withAddress("Какой-то адрес раз").withPhoto(photo);
     app.contact().create(contact);
-    assertThat(app.contact().count(), equalTo(before.size()));
+    assertThat(app.contact().countContacts(), equalTo(before.size()));
     Contacts after = app.contact().all();
     assertThat(after, equalTo(before));
   }

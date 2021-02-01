@@ -3,6 +3,7 @@ package ru.stqa.pft.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 
@@ -18,8 +19,15 @@ public class ContactHelper extends HelperBase {
         click(By.xpath("(//input[@name='submit'])[2]"));
     }
 
-    public int count(){
+    public int countContacts(){
         return wd.findElements(By.name("selected[]")).size();
+    }
+
+    public int countContactsInGroup(String idGroup) throws InterruptedException {
+        Select group = new Select(wd.findElement(By.name("group")));
+        group.selectByValue(idGroup);
+        Integer size = Integer.parseInt(wd.findElement(By.id("search_count")).getText());
+        return size;
     }
 
     public void fillContactForm(ContactData contactData) {
@@ -61,10 +69,26 @@ public class ContactHelper extends HelperBase {
         click(By.name("update"));
     }
 
+    public void initAddToGroup() {
+        click(By.name("add"));
+    }
+
+    public String getGroupId() {
+        String idGroup = wd.findElement(By.xpath("//*[@name=\"to_group\"]/option")).getAttribute("value");
+        return idGroup;
+    }
+
     public void create(ContactData contact) {
         goToPageContactAdd();
         fillContactForm(contact);
         submitContactCreation();
+        contactCache = null;
+        returnToHomePage();
+    }
+
+    public void addToGroup(ContactData contact) {
+        selectContactById(contact.getId());
+        initAddToGroup();
         contactCache = null;
         returnToHomePage();
     }

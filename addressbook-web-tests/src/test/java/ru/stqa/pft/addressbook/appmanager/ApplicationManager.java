@@ -78,5 +78,9 @@ public class ApplicationManager {
     public DbHelper db() {
         return dbHelper;
     }
+
+    public ContactHelper getGroupId(){
+        return contactHelper;
+    }
 }
 

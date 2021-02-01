@@ -33,7 +33,7 @@ public class ContactModificationTests extends TestBase{
             .withAddress("Какой-то отредактированный адрес раз").withAddress2("Какой-то отредактированный адрес два");
     app.goTo().homePage();
     app.contact().modify(contact);
-    assertThat(app.contact().count(), equalTo(before.size()));
+    assertThat(app.contact().countContacts(), equalTo(before.size()));
     Contacts after = app.db().contacts();
     assertThat(after, equalTo(before.withAdded(contact).withoutAdded(modifyContact)));
   }
