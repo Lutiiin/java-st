@@ -27,21 +27,20 @@ public class DeletionContactFromGroupTests extends TestBase{
       app.goTo().groupPage();
       app.group().create(new GroupData().withName("test1"));
     }
+  }
+
+  @Test
+  public void testDeleteContactFromGroup() throws Exception {
     String id =  String.valueOf(app.db().groups().iterator().next().getId());
-    if (app.db().contactsInGroup(id).size() == 0){
-      Contacts before = app.db().contactsInGroup(id);
+    Contacts before = new Contacts();
+    before = app.db().contactsInGroup(id);
+    if (before.size() == 0){
       Contacts contactsNotInGroup = app.db().contacts().withoutContactInGroup(before);
       ContactData addedContact = contactsNotInGroup.iterator().next();
       app.goTo().homePage();
       app.contact().addToGroup(addedContact, id);
+      before = app.db().contactsInGroup(id);
     }
-  }
-
-  @Test
-  public void testAddContactInGroup() throws Exception {
-    app.goTo().homePage();
-    String id =  String.valueOf(app.db().groups().iterator().next().getId());
-    Contacts before = app.db().contactsInGroup(id);
     ContactData deletionContact = before.iterator().next();
     app.goTo().homePage();
     app.contact().deletionFromGroup(deletionContact, id);
