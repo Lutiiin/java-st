@@ -50,7 +50,8 @@ public class MailHelper {
     }
 
     public String findConfirmationLink(List<MailMessage> mailMessages, String email) {
-        MailMessage mailMessage = mailMessages.stream().filter(message -> message.to.equals(email)).findFirst().get();
+        MailMessage mailMessage = mailMessages.stream().filter(message -> message.to.equals(email)).reduce((first, second) -> second)
+                .orElse(null);
         VerbalExpression regex = VerbalExpression.regex().find("http://").nonSpace().oneOrMore().build();
         return regex.getText(mailMessage.text);
     }

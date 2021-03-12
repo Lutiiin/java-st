@@ -21,10 +21,13 @@ public class ApplicationManager {
     private FtpHelper ftp;
     private MailHelper mailHelper;
     private AdministrationHelper administrationHelper;
-    private DbHelper dbHelper;
+    private DbHelper db;
 
     public DbHelper db() {
-        return dbHelper;
+        if (db == null){
+            db = new DbHelper(this);
+        }
+        return db;
     }
 
     public ApplicationManager(String browser) throws IOException {

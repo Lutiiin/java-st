@@ -13,9 +13,11 @@ import java.util.List;
 public class DbHelper {
 
     private final SessionFactory sessionFactory;
+    private final ApplicationManager app;
     private Session session;
 
-    public DbHelper(){
+    public DbHelper(ApplicationManager app){
+        this.app = app;
         final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .configure()
                 .build();

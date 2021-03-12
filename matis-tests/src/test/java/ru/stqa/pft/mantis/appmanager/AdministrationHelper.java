@@ -22,7 +22,10 @@ public class AdministrationHelper extends HelperBase{
     public void resetPass(String username) throws InterruptedException, MessagingException, IOException {
         wd.get(app.getProperty("web.baseUrl") + "/manage_user_page.php");
         click(By.xpath(String.format("//a[text() = '%s']", username)));
-        //click(By.cssSelector("input[value = 'Сбросить пароль']"));
+        click(By.cssSelector("input[value = 'Сбросить пароль']"));
+        click(By.linkText("Продолжить"));
+        click(By.xpath(String.format("//a[text() = '%s']", username)));
+        click(By.cssSelector("input[value = 'Сбросить пароль']"));
     }
 
     public void changePass(String confirmationLink, String password) {
